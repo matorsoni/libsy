@@ -1,5 +1,6 @@
 #include "sy_math.h"
 
+//#include <cstdint>
 #include <stdio.h>
 
 void print_vec2f(sy_vec2f v) {
@@ -9,6 +10,7 @@ void print_vec2f(sy_vec2f v) {
 void print_mat2f(sy_mat2f M) {
     printf("[[%f %f]\n [%f %f]]\n", M.elt[0], M.elt[2], M.elt[1], M.elt[3]);
 }
+
 
 int main(void) {
 
@@ -26,9 +28,12 @@ int main(void) {
     c = sy_mat2f_vecmul(m, c);
     print_vec2f(c);
 
+    sy_vec2f d = {0};
+    d.elt[0] = sy_vecf_dot(&m.elt[0], 2, &m.elt[2]);
+    print_vec2f(d);
 
-
-
+    sy_vecf_scale_inplace(d.elt, 2, 1.f/14);
+    print_vec2f(d);
 
     return 0;
 }

@@ -1,6 +1,60 @@
 #ifndef SY_MATH_H
 #define SY_MATH_H
 
+#include "sy_types.h"
+
+typedef struct sy_vecf sy_vecf;
+struct sy_vecf {
+    f32* elt;
+    size_t len;
+};
+
+static inline void sy_vecf_add(const f32* a, usize n, const f32* b, f32* out) {
+    for (usize i = 0; i < n; ++i) out[i] = a[i] + b[i];
+}
+
+static inline void sy_vecf_add_inplace(f32* a, usize n, const f32* b) {
+    for (usize i = 0; i < n; ++i) a[i] += b[i];
+}
+
+static inline void sy_vecf_sub(const f32* a, usize n, const f32* b, f32* out) {
+    for (usize i = 0; i < n; ++i) out[i] = a[i] - b[i];
+}
+
+static inline void sy_vecf_sub_inplace(f32* a, usize n, const f32* b) {
+    for (usize i = 0; i < n; ++i) a[i] -= b[i];
+}
+
+static inline void sy_vecf_mul(const f32* a, usize n, const f32* b, f32* out) {
+    for (usize i = 0; i < n; ++i) out[i] = a[i] * b[i];
+}
+
+static inline void sy_vecf_mul_inplace(f32* a, usize n, const f32* b) {
+    for (usize i = 0; i < n; ++i) a[i] *= b[i];
+}
+
+static inline void sy_vecf_div(const f32* a, usize n, const f32* b, f32* out) {
+    for (usize i = 0; i < n; ++i) out[i] = a[i] / b[i];
+}
+
+static inline void sy_vecf_div_inplace(f32* a, usize n, const f32* b) {
+    for (usize i = 0; i < n; ++i) a[i] /= b[i];
+}
+
+static inline void sy_vecf_scale(const f32* a, usize n, f32 s, f32* out) {
+    for (usize i = 0; i < n; ++i) out[i] = a[i] * s;
+}
+
+static inline void sy_vecf_scale_inplace(f32* a, usize n, f32 s) {
+    for (usize i = 0; i < n; ++i) a[i] *= s;
+}
+
+static inline float sy_vecf_dot(const f32* a, usize n, const f32* b) {
+    f32 res = 0.f;
+    for (usize i = 0; i < n; ++i) res += a[i] * b[i];
+    return res;
+}
+
 /*************************************
 *                                    *
  *           vec2f & mat2f            *
